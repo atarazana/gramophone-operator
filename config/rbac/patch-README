@@ -1,0 +1,12 @@
+curl https://raw.githubusercontent.com/atarazana/gramola-operator/master/templates/memcached_controller.go.tmpl | \
+  sed s/example\-inc/${ORGANIZATION}/g | \
+  sed s/cache\.example\.com/${APP_NAME}.${DOMAIN}/g | \
+  sed s/memcached\-operator/${OPERATOR_NAME}/g | \
+  sed s/cachev1alpha1/${APP_NAME}v1/g | \
+  sed s/v1alpha1/v1/g | \
+  sed s/MemcachedReconciler/AppServiceReconciler/g | \
+  sed s/Memcached/AppService/g | \
+  sed s/memcacheds/appservices/g | \
+  sed s/WithValues\(\"memcached\"/WithValues\(\"appservice\"/g | \
+  sed 's/"memcached", "memcached_cr"/"appservice", "appservice_cr"/g' | \
+  sed 's/\([^"]\)memcached\([^"]\)/\1appservice\2/g' > ./controllers/appservice_controller.go 

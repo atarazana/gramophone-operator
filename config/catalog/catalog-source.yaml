@@ -1,0 +1,9 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  name: atarazana-catalog
+spec:
+  displayName: Atarazana Operators
+  publisher: Atarazana Inc.
+  sourceType: grpc
+  image: BUNDLE_INDEX_IMG

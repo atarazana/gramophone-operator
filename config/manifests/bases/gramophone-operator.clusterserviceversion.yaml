@@ -1,0 +1,48 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    alm-examples: '[]'
+    capabilities: Basic Install
+    operators.operatorframework.io/builder: operator-sdk-v1.0.0
+    operators.operatorframework.io/project_layout: go.kubebuilder.io/v2
+  name: gramophone-operator.vX.Y.Z
+  namespace: placeholder
+spec:
+  apiservicedefinitions: {}
+  customresourcedefinitions:
+    owned:
+    - description: AppService is the Schema for the appservices API
+      displayName: App Service
+      kind: AppService
+      name: appservices.gramophone.atarazana.com
+      version: v1
+  description: Deploys Gramophone and additional services such as a Memcached cluster
+  displayName: Gramophone
+  icon:
+  - base64data: ""
+    mediatype: ""
+  install:
+    spec:
+      deployments: null
+    strategy: ""
+  installModes:
+  - supported: true
+    type: OwnNamespace
+  - supported: true
+    type: SingleNamespace
+  - supported: false
+    type: MultiNamespace
+  - supported: true
+    type: AllNamespaces
+  keywords:
+  - music
+  - events
+  links:
+  - name: Gramophone Operator
+    url: https://gramophone-operator.domain
+  maturity: alpha
+  provider:
+    name: Atarazana Inc.
+    url: https://es.wikipedia.org/wiki/Astillero_naval
+  version: 0.0.0

@@ -1,0 +1,194 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    alm-examples: |-
+      [
+        {
+          "apiVersion": "gramophone.atarazana.com/v1",
+          "kind": "AppService",
+          "metadata": {
+            "name": "appservice-sample"
+          },
+          "spec": {
+            "size": 7
+          }
+        }
+      ]
+    capabilities: Basic Install
+    operators.operatorframework.io/builder: operator-sdk-v1.0.0
+    operators.operatorframework.io/project_layout: go.kubebuilder.io/v2
+  name: gramophone-operator.v0.0.1
+  namespace: placeholder
+spec:
+  apiservicedefinitions: {}
+  customresourcedefinitions:
+    owned:
+    - description: AppService is the Schema for the appservices API
+      displayName: App Service
+      kind: AppService
+      name: appservices.gramophone.atarazana.com
+      version: v1
+  description: |
+    This operator deploys and maintains a complex system blah, blah, built mostly with [Quarkus](https://quarkus.io).
+
+    ### This is just a sample operator
+
+    This operator deploys an application made of several microservices. The code of the application is here.
+
+    ### Supported Features
+
+    **Deployment**
+
+    For now we don't support upgrades.
+  displayName: Gramophone
+  icon:
+  - base64data: "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+Cjxzdmcgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDI0OTAgMjUwMCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxuczpzZXJpZj0iaHR0cDovL3d3dy5zZXJpZi5jb20vIiBzdHlsZT0iZmlsbC1ydWxlOmV2ZW5vZGQ7Y2xpcC1ydWxlOmV2ZW5vZGQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS1taXRlcmxpbWl0OjI7Ij4KICAgIDxwYXRoIGQ9Ik0xMjQ1LjAxLDYuNjI0QzU1Ny40MzksNi42MjQgMCw1NjMuOTk1IDAsMTI1MS42QzAsMTkzOS4xNyA1NTcuNDM5LDI0OTYuNTggMTI0NS4wMSwyNDk2LjU4QzE5MzIuNTgsMjQ5Ni41OCAyNDkwLDE5MzkuMTcgMjQ5MCwxMjUxLjZDMjQ5MCw1NjMuOTg2IDE5MzIuNTYsNi42MjQgMTI0NS4wMSw2LjYyNFoiIHN0eWxlPSJmaWxsOnJnYigyMTgsNzgsNDkpO2ZpbGwtcnVsZTpub256ZXJvOyIvPgogICAgPGNpcmNsZSBjeD0iMTI0NSIgY3k9IjEyNTAiIHI9Ijk0NC43MjgiIHN0eWxlPSJmaWxsOnJnYigyMzUsMjM1LDIzNSk7Ii8+CiAgICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgwLjY0NjI5OSwwLDAsMC42NDYyOTksNDQwLjM1OCw0NDIuMTI2KSI+CiAgICAgICAgPGNpcmNsZSBjeD0iMTI0NSIgY3k9IjEyNTAiIHI9Ijk0NC43MjgiIHN0eWxlPSJmaWxsOnJnYigyMjcsMTEzLDExMyk7Ii8+CiAgICA8L2c+CiAgICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgwLjMyMTY4MSwwLDAsMC4zMjE2ODEsODQ0LjUwNyw4NDcuODk4KSI+CiAgICAgICAgPGNpcmNsZSBjeD0iMTI0NSIgY3k9IjEyNTAiIHI9Ijk0NC43MjgiIHN0eWxlPSJmaWxsOndoaXRlOyIvPgogICAgPC9nPgogICAgPGcgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMDI3MTMsMCwwLDAuMTAyNzEzLDExMTcuMTIsMTEyMS42MSkiPgogICAgICAgIDxjaXJjbGUgY3g9IjEyNDUiIGN5PSIxMjUwIiByPSI5NDQuNzI4IiBzdHlsZT0iZmlsbDpyZ2IoMjUwLDE4MiwxODIpOyIvPgogICAgPC9nPgo8L3N2Zz4K"
+    mediatype: "image/svg+xml"
+  install:
+    spec:
+      clusterPermissions:
+      - rules:
+        - apiGroups:
+          - apps
+          resources:
+          - deployments
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - ""
+          resources:
+          - pods
+          verbs:
+          - get
+          - list
+        - apiGroups:
+          - gramophone.atarazana.com
+          resources:
+          - appservices
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - gramophone.atarazana.com
+          resources:
+          - appservices/status
+          verbs:
+          - get
+          - patch
+          - update
+        - apiGroups:
+          - authentication.k8s.io
+          resources:
+          - tokenreviews
+          verbs:
+          - create
+        - apiGroups:
+          - authorization.k8s.io
+          resources:
+          - subjectaccessreviews
+          verbs:
+          - create
+        serviceAccountName: default
+      deployments:
+      - name: gramophone-operator-controller-manager
+        spec:
+          replicas: 1
+          selector:
+            matchLabels:
+              control-plane: controller-manager
+          strategy: {}
+          template:
+            metadata:
+              labels:
+                control-plane: controller-manager
+            spec:
+              containers:
+              - args:
+                - --metrics-addr=127.0.0.1:8080
+                - --enable-leader-election
+                command:
+                - /manager
+                image: quay.io/cvicens/gramophone-operator-image:v0.0.1
+                name: manager
+                resources:
+                  limits:
+                    cpu: 100m
+                    memory: 30Mi
+                  requests:
+                    cpu: 100m
+                    memory: 20Mi
+              - args:
+                - --secure-listen-address=0.0.0.0:8443
+                - --upstream=http://127.0.0.1:8080/
+                - --logtostderr=true
+                - --v=10
+                image: gcr.io/kubebuilder/kube-rbac-proxy:v0.5.0
+                name: kube-rbac-proxy
+                ports:
+                - containerPort: 8443
+                  name: https
+                resources: {}
+              terminationGracePeriodSeconds: 10
+      permissions:
+      - rules:
+        - apiGroups:
+          - ""
+          resources:
+          - configmaps
+          verbs:
+          - get
+          - list
+          - watch
+          - create
+          - update
+          - patch
+          - delete
+        - apiGroups:
+          - ""
+          resources:
+          - configmaps/status
+          verbs:
+          - get
+          - update
+          - patch
+        - apiGroups:
+          - ""
+          resources:
+          - events
+          verbs:
+          - create
+          - patch
+        serviceAccountName: default
+    strategy: deployment
+  installModes:
+  - supported: true
+    type: OwnNamespace
+  - supported: true
+    type: SingleNamespace
+  - supported: false
+    type: MultiNamespace
+  - supported: true
+    type: AllNamespaces
+  keywords:
+  - music
+  - events
+  links:
+  - name: Gramophone Operator
+    url: https://gramophone-operator.domain
+  maturity: alpha
+  provider:
+    name: Atarazana Inc.
+    url: https://es.wikipedia.org/wiki/Astillero_naval
+  version: 0.0.1
